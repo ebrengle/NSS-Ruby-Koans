@@ -31,6 +31,33 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
+
+  #Return 0 if there is nothing in the array
+  #
+  #Initialize score to be zero
+  score = 0
+
+  #Use Ruby upto method to loop over 1-6 in the array and count values
+  1.upto(6).each do |num|
+    amount = dice.count(num)
+
+    #if you have 3 and it's 1's return 1000 other wise return the number times 100.
+    if amount >= 3
+      score += num == 1 ? 1000 : num * 100
+      amount -= 3
+    end
+    #A one that is not part of a set of 3 is 100 points
+    score += 100 * amount if num == 1
+
+    #A five that is not part of a set of 3 is 50 points
+    score += 50 * amount if num == 5
+  end
+
+  score
+
+
+
+
 end
 
 class AboutScoringProject < Neo::Koan

@@ -15,6 +15,22 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
+  if a<=0 || b<=0 || c<=0
+    raise TriangleError, "Too small"
+  end
+  if (a==b && b < c) || (b==c && c < a) || (a==c && c < b)
+    raise TriangleError, "Not Valid Dimensions"
+  end
+  if a==b && a==c
+    return :equilateral
+  end
+  if (a==b && a!=c) || (a==c && a!=b || b==c && b!=a)
+    return :isosceles
+  end
+  if a!=b && a!=c && b!=c
+    return :scalene
+  end
+
 end
 
 # Error class used in part 2.  No need to change this code.
